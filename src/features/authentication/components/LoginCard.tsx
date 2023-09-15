@@ -5,10 +5,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "./ui/input";
+} from "@/components/ui/card.tsx";
+import { Input } from "../../../components/ui/input.tsx";
 import { Label } from "@radix-ui/react-label";
-import { Button } from "./ui/button";
+import { Button } from "../../../components/ui/button.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 
 const LoginCard: React.FC = () => {

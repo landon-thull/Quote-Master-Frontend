@@ -1,10 +1,10 @@
-import LoginCard from "./components/LoginCard";
+import LoginPage from "@/features/authentication/pages/LoginPage.tsx";
 
 function App() {
   return (
-      <div className="bg-background text-primary min-h-full p-4 flex justify-center items-center flex-row">
-        <LoginCard/>
-      </div>
+      <>
+        <LoginPage />
+      </>
   );
 }
 
