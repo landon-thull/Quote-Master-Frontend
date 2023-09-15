@@ -15,9 +15,9 @@ const LoginCard: React.FC = () => {
   return (
     <Card className="w-full max-w-md h-full">
       <CardHeader>
-        <h1 className="text-4xl text-center mb-4 font-bold tracking-wider">QUOTE MASTER</h1>
+        <h1 className="text-3xl md:text-4xl text-center text-re mb-6 font-bold tracking-wider">QUOTE MASTER</h1>
         <Separator />
-        <CardTitle className="pt-4">Login</CardTitle>
+        <CardTitle className="pt-6">Login</CardTitle>
         <CardDescription>
           Enter your email and password to login.
         </CardDescription>
@@ -35,7 +35,7 @@ const LoginCard: React.FC = () => {
         </div>
       </CardContent>
       <Separator />
-      <CardFooter className="mt-4">
+      <CardFooter className="mt-6">
         <Button className="w-full">LOGIN</Button>
       </CardFooter>
     </Card>
