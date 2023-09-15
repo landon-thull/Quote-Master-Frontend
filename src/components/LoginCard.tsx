@@ -34,8 +34,7 @@ const LoginCard: React.FC = () => {
           <p></p>
         </div>
       </CardContent>
-      <Separator />
-      <CardFooter className="mt-6">
+      <CardFooter>
         <Button className="w-full">LOGIN</Button>
       </CardFooter>
     </Card>
