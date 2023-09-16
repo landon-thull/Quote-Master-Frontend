@@ -1,6 +1,6 @@
 import React from "react";
 import PageWrapper from "@/components/PageWrapper.tsx";
-import LoginCard from "@/features/authentication/components/LoginCard.tsx";
+import LoginCard from "@/features/auth/components/LoginCard.tsx";
 
 const LoginPage: React.FC = () => {
   return (

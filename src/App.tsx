@@ -1,4 +1,4 @@
-import LoginPage from "@/features/authentication/pages/LoginPage.tsx";
+import LoginPage from "@/features/auth/pages/LoginPage.tsx";
 
 function App() {
   return (
