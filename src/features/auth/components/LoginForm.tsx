@@ -25,6 +25,7 @@ const LoginForm: React.FC = () => {
     register,
     handleSubmit,
     setError,
+    resetField,
     formState: {errors, isSubmitting},
   } = useForm<LoginRequest>({
     resolver: zodResolver(schema)
@@ -36,6 +37,8 @@ const LoginForm: React.FC = () => {
       navigate("/");
     }).catch((error: AxiosError) => {
       if (error.response && error.response.status === 401) {
+        resetField("email");
+        resetField("password");
         setError("email", {type: "auth", message: "Invalid email or password"});
         setError("password", {type: "auth", message: "Invalid email or password"});
       }
