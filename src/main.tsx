@@ -6,9 +6,14 @@ import {Provider} from "react-redux";
 
 import {store} from "./stores/store.ts"
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import LoginPage from "@/features/auth/pages/LoginPage.tsx";
+import {LoginPage} from "@/features/auth";
+import App from "@/App.tsx";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />
+  },
   {
     path: "/login",
     element: <LoginPage />
