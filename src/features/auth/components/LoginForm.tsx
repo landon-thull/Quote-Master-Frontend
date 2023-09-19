@@ -8,6 +8,7 @@ import {LoginRequest, LoginResponse} from "@/features/auth/types";
 import {loginWithEmailAndPassword} from "@/features/auth/api/login.ts";
 import storage from "@/utils/storage.ts";
 import {z} from "zod";
+import {useNavigate} from "react-router-dom";
 
 const schema = z.object({
   email: z.string().min(1, "Required").email("Invalid email"),
@@ -17,6 +18,7 @@ const schema = z.object({
 });
 
 const LoginForm: React.FC = () => {
+  const navigate = useNavigate();
 
   const {
     register,
@@ -31,6 +33,7 @@ const LoginForm: React.FC = () => {
     try {
       const res: LoginResponse = await loginWithEmailAndPassword({email: data.email, password: data.password});
       storage.setToken(res.token);
+      navigate("/");
     } catch (error: any) {
       if (error && error.response && error.response.status === 401) {
         setError("email", {message: "Invalid email or password"});
