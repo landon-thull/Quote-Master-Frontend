@@ -4,11 +4,12 @@ import {Input} from "@/components/ui/input.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {LoginRequest, LoginResponse} from "@/features/auth/types";
+import {LoginRequest} from "@/features/auth/types";
 import {loginWithEmailAndPassword} from "@/features/auth/api/login.ts";
 import storage from "@/utils/storage.ts";
 import {z} from "zod";
 import {useNavigate} from "react-router-dom";
+import {AxiosError} from "axios";
 
 const schema = z.object({
   email: z.string().min(1, "Required").email("Invalid email"),
@@ -29,17 +30,16 @@ const LoginForm: React.FC = () => {
     resolver: zodResolver(schema)
   });
 
-  const onSubmit: SubmitHandler<LoginRequest> = async (data) => {
-    try {
-      const res: LoginResponse = await loginWithEmailAndPassword({email: data.email, password: data.password});
+  const onSubmit: SubmitHandler<LoginRequest> = (data) => {
+    loginWithEmailAndPassword(data).then((res) => {
       storage.setToken(res.token);
       navigate("/");
-    } catch (error: any) {
-      if (error && error.response && error.response.status === 401) {
-        setError("email", {message: "Invalid email or password"});
-        setError("password", {message: "Invalid email or password"});
+    }).catch((error: AxiosError) => {
+      if (error.response && error.response.status === 401) {
+        setError("email", {type: "auth", message: "Invalid email or password"});
+        setError("password", {type: "auth", message: "Invalid email or password"});
       }
-    }
+    })
   };
 
   return (
