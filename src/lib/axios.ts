@@ -1,7 +1,6 @@
 import Axios, {InternalAxiosRequestConfig} from 'axios';
 
 import { API_URL } from '@/config';
-import { addNotification } from '@/stores/notificationSlice';
 import storage from '@/utils/storage';
 
 const authRequestInterceptor = (config: InternalAxiosRequestConfig) => {
@@ -23,15 +22,6 @@ axios.interceptors.response.use(
       return response.data;
     },
     (error) => {
-      const message = error.response?.data?.message || error.message;
-
-      addNotification({
-        id: Date.now(),
-        type: "error",
-        title: "Error",
-        message: message,
-      });
-
       return Promise.reject(error);
     }
 );
