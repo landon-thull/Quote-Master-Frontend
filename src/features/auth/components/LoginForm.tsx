@@ -10,6 +10,8 @@ import storage from "@/utils/storage.ts";
 import {z} from "zod";
 import {useNavigate} from "react-router-dom";
 import {AxiosError} from "axios";
+import {setIsAuthenticated} from "@/stores/authSlice.ts";
+import {useAppDispatch} from "@/hooks/reduxHooks.ts";
 
 const schema = z.object({
   email: z.string().min(1, "Required").email("Invalid email"),
@@ -20,6 +22,7 @@ const schema = z.object({
 
 const LoginForm: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -34,6 +37,7 @@ const LoginForm: React.FC = () => {
   const onSubmit: SubmitHandler<LoginRequest> = (data) => {
     loginWithEmailAndPassword(data).then((res) => {
       storage.setToken(res.token);
+      dispatch(setIsAuthenticated(true));
       navigate("/");
     }).catch((error: AxiosError) => {
       if (error.response && error.response.status === 401) {
