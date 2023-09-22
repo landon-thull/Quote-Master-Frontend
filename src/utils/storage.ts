@@ -5,7 +5,7 @@ const storage = {
     return JSON.parse(window.localStorage.getItem(`${storagePrefix}token`) as string);
   },
   setToken: (token: string) => {
-    window.localStorage.setItem(`Bearer ${storagePrefix}token`, JSON.stringify(token));
+    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(`Bearer ${token}`));
   },
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);
